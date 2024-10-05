@@ -1,0 +1,1 @@
+trees.Node{value=7, left=trees.Node{value=6, left=null, right=null, height=0}, right=trees.Node{value=12, left=null, right=trees.Node{value=65, left=trees.Node{value=43, left=null, right=trees.Node{value=56, left=null, right=null, height=0}, height=0}, right=trees.Node{value=78, left=null, right=null, height=0}, height=0}, height=0}, height=0}
