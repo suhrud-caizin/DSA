@@ -79,10 +79,15 @@ public class Backtracking {
         System.out.println();
     }
 
-    private static boolean isSafe(boolean[][] board, int r, int c) {
+    public static boolean isSafe(boolean[][] board, int r, int c) {
         // check for column in previous rows
         for (int i = 0; i < r; i++) {
             if(board[i][c]) return false;
+        }
+
+        // check for column in previous rows
+        for (int i = 0; i < c; i++) {
+            if(board[r][i]) return false;
         }
 
         int min = Integer.min(r,c);

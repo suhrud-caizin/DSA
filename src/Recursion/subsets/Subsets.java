@@ -225,4 +225,33 @@ public class Subsets {
     }
 
 
+    static boolean[] visited;
+    static List<List<Integer>> permData;
+
+    public static List<List<Integer>>permuteUnique(int[] nums){
+        visited = new boolean[nums.length];
+        permData = new ArrayList<>();
+        permuteUniqueHelper(nums, new ArrayList<>(), 0);
+        return permData;
+    }
+    public static void permuteUniqueHelper(int[] nums, List<Integer> carry, int start) {
+        if(carry.size() == nums.length){
+            permData.add(new ArrayList<>(carry));
+            return;
+        }
+
+        int size = carry.size();
+        for (int i = start; i < nums.length; i++) {
+
+            if((i>0 && nums[start] == nums[start-1])) continue;
+
+            carry.add(nums[i]);
+            visited[i] = true;
+            permuteUniqueHelper(nums,carry,i+1);
+            visited[i]= false;
+            carry.remove(size);
+        }
+    }
+
+
 }

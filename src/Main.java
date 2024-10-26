@@ -1,3 +1,9 @@
+import sorting.ListNode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static Recursion.Questions.LeetCode.*;
 import static Recursion.backtracking.Backtracking.nKnights;
 import static Recursion.backtracking.Backtracking.nQueens;
 import static Recursion.backtracking.SudokuSolver.solve;
@@ -66,13 +72,13 @@ public class Main {
 //        System.out.println(merge(arr));
 //        merge(arr);
 
-//        var head = new ListNode(4);
-//        var tw = new ListNode(2);
-//        var on = new ListNode(1);
-//        var th = new ListNode(3);
-//        head.next = tw;
-//        tw.next = on;
-//        on.next = th;
+        var head = new ListNode(1);
+        var tw = new ListNode(2);
+        var on = new ListNode(3);
+        var th = new ListNode(4);
+        head.next = tw;
+        tw.next = on;
+        on.next = th;
 
 //        printList(head);
 //
@@ -111,18 +117,68 @@ public class Main {
 //        boolean[][] board= new boolean[4][4];
 //        System.out.println(
 //                nKnights(board,0,0,4));
-        int[][] board = new int[][]{
-                {3, 0, 6, 5, 0, 8, 4, 0, 0},
-                {5, 2, 0, 0, 0, 0, 0, 0, 0},
-                {0, 8, 7, 0, 0, 0, 0, 3, 1},
-                {0, 0, 3, 0, 1, 0, 0, 8, 0},
-                {9, 0, 0, 8, 6, 3, 0, 0, 5},
-                {0, 5, 0, 0, 9, 0, 6, 0, 0},
-                {1, 3, 0, 0, 0, 0, 2, 5, 0},
-                {0, 0, 0, 0, 0, 0, 0, 7, 4},
-                {0, 0, 5, 2, 0, 6, 3, 0, 0}
-        };
-        solve(board,0,0);
+//        int[][] board = new int[][]{
+//                {3, 0, 6, 5, 0, 8, 4, 0, 0},
+//                {5, 2, 0, 0, 0, 0, 0, 0, 0},
+//                {0, 8, 7, 0, 0, 0, 0, 3, 1},
+//                {0, 0, 3, 0, 1, 0, 0, 8, 0},
+//                {9, 0, 0, 8, 6, 3, 0, 0, 5},
+//                {0, 5, 0, 0, 9, 0, 6, 0, 0},
+//                {1, 3, 0, 0, 0, 0, 2, 5, 0},
+//                {0, 0, 0, 0, 0, 0, 0, 7, 4},
+//                {0, 0, 5, 2, 0, 6, 3, 0, 0}
+//        };
+//        solve(board,0,0);
+
+
+//        System.out.println(combinationSum(new int[]{2},1));
+
+
+//                char[][] board = new char[][]{
+//                        {'A','B','C','E'},{"S","F","C","S"},{"A","D","E","E"}
+//        };
+
+//        System.out.println(permuteUnique(new int[]{1,1,2}));
+
+
+//        numTilePossibilitiesN("AAB");
+
+//        System.out.println(allPathsSourceTarget(new int[][]{
+//                {1,2},
+//                {3},
+//                {3},
+//                {}
+//        }));
+
+//        System.out.println(getMaximumGold(new int[][]{
+//                {0,6,0},{5,8,7},{0,9,0}
+//        }));
+
+//        reorderList(head);
+
+//        System.out.println(maxPossibleIncreasingSeq(new int[]{
+//                3,5,6,2,5,4,19,5,6,7,12
+//        }));
+
+//        System.out.println(parseBoolExpr("!(&(f,t))"
+//        ));
+//        System.out.println(makeLargestSpecial("110001"));
+
+//        System.out.println(getPermutation2(4,9));
+//        System.out.println(uniquePathsIII(new int[][]{
+//                {0,1},
+//                {2,0},
+////                {0,0,2,-1}
+//        }));
+
+
+//        System.out.println(findAllConcatenatedWordsInADict(new String[]{"cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"}));
+
+
+
+
     }
+
+    // how to get all the possible combinations of a given array elements
 }
 
