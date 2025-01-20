@@ -201,38 +201,36 @@ public class SinglyLinkedList {
     }
 
     private void bubbleSort(int row, int col) {
-        if (row == 0) {
-            return;
-        }
+        if(row == 0) return;
 
-        if (col < row) {
-            Node first = get(col);
-            Node second = get(col + 1);
-
-            if (first.value > second.value) {
-                // swap
-                if (first == head) {
-                    head = second;
-                    first.next = second.next;
-                    second.next = first;
-                } else if (second == tail) {
-                    Node prev = get(col - 1);
-                    prev.next = second;
-                    tail = first;
-                    first.next = null;
-                    second.next = tail;
-                } else {
-                    Node prev = get(col - 1);
-                    prev.next = second;
-                    first.next = second.next;
-                    second.next = first;
+        if(col < row){
+            var f = get(col);
+            var s = get(col+1);
+            if(f.value > s.value){
+                if(f == head){
+                        head = s;
+                        f.next =s.next;
+                        s.next = f;
+                }else if( s == tail){
+                    var prev = get(col-1);
+                    tail = f;
+                    prev.next = s;
+                    s.next = f;
+                    f.next = null;
+                }else{
+                    var prev = get(col-1);
+                    prev.next = s;
+                    f.next = s.next;
+                    s.next = f;
                 }
+
             }
-            bubbleSort(row, col + 1);
-        } else {
-            bubbleSort(row - 1, 0);
+            bubbleSort(row,col+1);
+        }else{
+            bubbleSort(row-1,0);
         }
     }
+
 
     // recursion reverse
     private void reverse(Node node) {
@@ -273,11 +271,11 @@ public class SinglyLinkedList {
         SinglyLinkedList first = new SinglyLinkedList();
 
         first.insertLast(1);
-        first.insertLast(3);
-        first.insertLast(3);
-        first.insertLast(5);
-        first.insertLast(5);
         first.insertLast(13);
+        first.insertLast(30);
+        first.insertLast(5);
+        first.insertLast(52);
+        first.insertLast(213);
 
 
         SinglyLinkedList sec = new SinglyLinkedList();
@@ -289,9 +287,11 @@ public class SinglyLinkedList {
 
 
         first.display();
-        sec.display();
-        var ans  = merge(first,sec);
-        ans.display();
+        first.bubbleSort();
+        first.display();
+//        sec.display();
+////        var ans  = merge(first,sec);
+//        ans.display();
     }
 
 

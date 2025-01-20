@@ -1,5 +1,6 @@
 import sorting.ListNode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -64,21 +65,21 @@ public class Main {
 //        int a = 1000000000;
 //        long b= (long) a+a+a+a;
 //        System.out.println(groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}));
-        int[][] arr= new int[][]{
-//                {1,4},{2,3}
-                {1,3},{2,6},{8,10},{15,18}
-        };
+//        int[][] arr= new int[][]{
+////                {1,4},{2,3}
+//                {1,3},{2,6},{8,10},{15,18}
+//        };
 
 //        System.out.println(merge(arr));
 //        merge(arr);
 
-        var head = new ListNode(1);
-        var tw = new ListNode(2);
-        var on = new ListNode(3);
-        var th = new ListNode(4);
-        head.next = tw;
-        tw.next = on;
-        on.next = th;
+//        var head = new ListNode(1);
+//        var tw = new ListNode(2);
+//        var on = new ListNode(3);
+//        var th = new ListNode(4);
+//        head.next = tw;
+//        tw.next = on;
+//        on.next = th;
 
 //        printList(head);
 //
@@ -97,7 +98,7 @@ public class Main {
 //        System.out.println(getNumberOfOnes(0));
 
 //
-        int[] arr1 = {1,2,2,3};
+//        int[] arr1 = {1,2,2,3};
 //
 //        System.out.println("Origin array: " + Arrays.toString(arr1));
 //        radixSort(arr1);
@@ -175,10 +176,26 @@ public class Main {
 //        System.out.println(findAllConcatenatedWordsInADict(new String[]{"cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"}));
 
 
+//int offset = 0;
+//int arrayJobSize = 500;
+//int jobArrayIndex  =0;
+//
+//
+//        while (true) {
+//            int fileIndex = jobArrayIndex % arrayJobSize + offset;
+//            System.out.println(fileIndex);
+//            offset = offset + arrayJobSize;
+//        }
 
 
+        var ad = new ArrayDeque<>(1);
+        ad.add(1);
+        ad.add(5);
+        ad.add(8);
+        System.out.println(ad);
     }
 
     // how to get all the possible combinations of a given array elements
+
 }
 

@@ -417,9 +417,7 @@ public class DFS {
     }
 
     public int pathSum(TreeNode root, int targetSum) {
-return 0;
+        return 0;
     }
-
-
 }
 
