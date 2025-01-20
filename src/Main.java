@@ -1,16 +1,5 @@
-import sorting.ListNode;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static Recursion.Questions.LeetCode.*;
-import static Recursion.backtracking.Backtracking.nKnights;
-import static Recursion.backtracking.Backtracking.nQueens;
-import static Recursion.backtracking.SudokuSolver.solve;
-import static Recursion.subsets.Subsets.*;
-
-//import static sorting.SortingAlgo.*;
 
 public class Main {
     public static void main(String[] args) {

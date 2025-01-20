@@ -1,8 +1,5 @@
 package Heaps;
 
-import sorting.ListNode;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Solution {
