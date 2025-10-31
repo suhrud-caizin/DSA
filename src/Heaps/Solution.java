@@ -158,4 +158,37 @@ public class Solution {
 
         return costs[dst] != Integer.MAX_VALUE ? costs[dst] : -1;
     }
+
+
+    record Pair(int num, int freq){}
+
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer,Integer> freqmap =  new HashMap<>();
+
+        for (int num: nums){
+            freqmap.put(num, freqmap.getOrDefault(num,0)+1);
+        }
+
+        System.out.println();
+
+            PriorityQueue<Pair> queue = new PriorityQueue<>(Comparator.comparingInt(Pair::freq));
+//            queue.p
+            for(var es : freqmap.entrySet()){
+                queue.add(new Pair(es.getKey(),es.getValue()));
+
+                if (queue.size() > k){
+                    queue.poll();
+                }
+            }
+
+            int[] ans = new int[k];
+            int i=0;
+
+            while(!queue.isEmpty()){
+                ans[i++]=queue.poll().num();
+            }
+
+            return ans;
+
+    }
 }

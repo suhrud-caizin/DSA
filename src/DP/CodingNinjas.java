@@ -1,7 +1,6 @@
 package DP;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class CodingNinjas {
 
@@ -583,6 +582,112 @@ public int targetSum(int n, int target, int[] arr) {
     }
 
 
+//    public int deleteAndEarn(int[] nums) {
+////        Map<Integer, Integer> map = new HashMap<>();
+////
+////        for(int num:nums){
+////            map.put(num,map.getOrDefault(num,0) + 1);
+////        }
+//
+//    }
+
+    public static class Modifications{
+        String word;
+        int mods;
+
+        public Modifications(String word, int mods) {
+            this.word = word;
+            this.mods = mods;
+        }
+
+        @Override
+        public String toString() {
+            return "Modifications{" +
+                    "word='" + word + '\'' +
+                    '}';
+        }
+    }
+    public int minDistance(String word1, String word2) {
+
+        List<Modifications> list = List.of(new Modifications(word2,0));
+
+        for (int i = 0; i < word1.length(); i++) {
+            List<Modifications> temp = new ArrayList<>();
+            for (Modifications modifications : list) {
+//                if(modifications.word.length()  <= i) continue;
+                if (modifications.word.charAt(i) != word1.charAt(i)) {
+                    if(modifications.word.length()  >= i){
+                        String inserted = modifications.word.substring(0, i) + word1.charAt(i) + modifications.word.substring(i);
+                        if (inserted.equals(word1))
+                            return modifications.mods + 1;
+                        temp.add(new Modifications(inserted,modifications.mods+1));
+                    }
+
+                    if(modifications.word.length()  > i){
+                        String replaced = modifications.word.substring(0, i) + word1.charAt(i) + modifications.word.substring(i + 1);
+                        if (replaced.equals(word1))
+                            return modifications.mods + 1;
+                        temp.add(new Modifications(replaced, modifications.mods+1));
+                    }
+
+                }else{
+                    temp.add(modifications);
+                }
+
+            }
+            System.out.println(temp);
+            list = temp;
+        }
+
+        return -1;
+
+    }
+
+
+    public int numDistinct(String s, String t) {
+        return helper(s,new StringBuilder(),t);
+    }
+
+    private int helper(String s, StringBuilder ss, String t){
+        if(ss.toString().equals(t)) return 1;
+        if(s.isEmpty()) return 0;
+        // char c = ;
+
+        return helper(s.substring(1), ss.append(s.charAt(0)), t) + helper(s.substring(1),ss,t);
+    }
+
+    public int coinChange(int[] coins, int sum){
+        int [] dp = new int[sum+1];
+        for (int i = 1; i <= dp.length; i++) {
+            for (int coin : coins){
+                if(i - coin >= 0){
+                    dp[i] += dp[i-coin];
+                }
+            }
+        }
+
+        return dp[sum];
+    }
+    static record Pair(int tillVal, int diff){}
+
+    public int longestArithSeqLength(int[] nums) {
+        Map<Pair, Integer> map = new HashMap<>();
+
+        int n = nums.length;
+        int maxLen = 1;
+
+        for (int i = 1; i < n; i++) {
+            int val = 1;
+            for (int j = 0; j < i; j++) {
+                val = map.getOrDefault(new Pair(nums[j],nums[i]-nums[j]),0)+1;
+                map.put(new Pair(nums[i],nums[i]-nums[j]),val);
+            }
+
+            if(val > maxLen) maxLen = val;
+        }
+        return maxLen;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(countDistinctWayToClimbStair(51));
 //        var ans = ninjaTrainingTab(2,new int[][]{{10, 50, 1}, {5, 100, 11}});
@@ -632,6 +737,7 @@ public int targetSum(int n, int target, int[] arr) {
         System.out.println(
         new CodingNinjas().longestCommonSubsequence("abc","abc")
         );
+
 
 
     }

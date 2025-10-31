@@ -344,6 +344,170 @@ public class LeetCode {
 
         return 0;
     }
+
+
+    static class DLL{
+        ListNodeDLL head;
+        ListNodeDLL tail;
+
+        public void add(ListNodeDLL node){
+            if(head == null){
+                tail = head = node;
+            }else{
+                tail.next = node;
+                node.prev = tail;
+                tail = node;
+            }
+
+        }
+    }
+
+    static class ListNodeDLL {
+        int val;
+        ListNodeDLL next;
+        ListNodeDLL prev;
+
+        public ListNodeDLL(int val, ListNodeDLL next, ListNodeDLL prev) {
+            this.val = val;
+            this.next = next;
+            this.prev = prev;
+        }
+
+        public ListNodeDLL(int val) {
+            this.val = val;
+        }
+
+        @Override
+        public String toString() {
+            return "ListNodeDLL{" +
+                    "val=" + val +
+                    '}';
+        }
+    }
+
+     static DLL convertBSTToDLL(TreeNode root){
+        DLL list = new DLL();
+         convertBSTToDLLHelper(root,list);
+        return list;
+    }
+
+    private static void convertBSTToDLLHelper(TreeNode root, DLL list){
+        if(root == null) return;
+        convertBSTToDLLHelper(root.left,list);
+        list.add(new ListNodeDLL(root.val));
+        convertBSTToDLLHelper(root.right,list);
+    }
+
+    Map<Long,Integer> pathSumMap = new HashMap<>();
+    public int pathSum(TreeNode root, int targetSum) {
+        pathSumMap.put(0L,1);
+        return pathSumHelper(root,0,targetSum);
+    }
+
+    private int pathSumHelper(TreeNode root, long currentSum, int targetSum){
+        if(root == null) return 0;
+
+        currentSum += root.val;
+        int cnt = pathSumMap.getOrDefault(currentSum-targetSum,0);
+
+        pathSumMap.put(currentSum,pathSumMap.getOrDefault(currentSum,0)+1);
+
+        // code here
+        cnt += pathSumHelper(root.left, currentSum,targetSum);
+        cnt += pathSumHelper(root.right, currentSum, targetSum);
+
+        pathSumMap.put(currentSum,pathSumMap.getOrDefault(currentSum,0)-1);
+
+        return cnt;
+    }
+
+
+    public String getDirections(TreeNode root, int startValue, int destValue) {
+
+        var startPathString = getPath(root,startValue,"");
+        var endPathString = getPath(root,destValue,"");
+
+        char[] startPath = startPathString.toCharArray();
+        char[] endPath = endPathString.toCharArray();
+
+        int i;
+        for (i = 0; i < startPath.length; i++) {
+            if(startPath[i]!= endPath[i]) break;
+        }
+
+        startPathString = startPathString.substring(i);
+        endPathString = endPathString.substring(i);
+
+        StringBuilder ans = new StringBuilder();
+        ans.append("U".repeat(startPathString.length()));
+
+        return ans.append(endPathString).toString();
+    }
+
+    private String getPath(TreeNode root, int value, String path){
+        if(root == null) return null;
+        if(root.val == value) return path;
+
+        var l = getPath(root.left,value,path+"L");
+        if(l != null) return l;
+        return getPath(root.right,value, path+"R");
+    }
+
+    List<String> ans;
+    public List<String> binaryTreePaths(TreeNode root) {
+        ans = new ArrayList<>();
+        binaryTreePathsHelper(root, new StringBuilder());
+        return ans;
+    }
+
+    private void binaryTreePathsHelper(TreeNode root, StringBuilder path) {
+        if(root == null) return;
+        if(root.left == null && root.right == null) {
+            ans.add(path.append(root.val).toString());
+            return;
+        }
+        path.append(root.val).append("->");
+        binaryTreePathsHelper(root.left,new StringBuilder(path));
+        binaryTreePathsHelper(root.right, new StringBuilder(path));
+
+    }
+
+    Map<Integer, Integer> map = new HashMap<>();
+    public int[] findMode(TreeNode root) {
+        iterator(root);
+
+        // Step 1: Find the max frequency
+        int maxFreq = Collections.max(map.values());
+
+        // Step 2: Collect keys with max frequency
+        List<Integer> keysWithMaxFreq = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == maxFreq) {
+                keysWithMaxFreq.add(entry.getKey());
+            }
+        }
+
+        // Step 3: Convert List<Integer> to int[] using a loop
+        int[] result = new int[keysWithMaxFreq.size()];
+        for (int i = 0; i < keysWithMaxFreq.size(); i++) {
+            result[i] = keysWithMaxFreq.get(i);
+        }
+
+        return result;
+    }
+
+    private void iterator(TreeNode root){
+        if(root == null) return;
+        if(!map.containsKey(root.val)){
+            map.put(root.val, 1);
+        }else{
+            map.put(root.val, map.get(root.val)+1);
+        }
+
+        iterator(root.left);
+        iterator(root.right);
+
+    }
     public static void main(String[] args) {
         TreeNode node1 = new TreeNode(1);
         TreeNode node3 = new TreeNode(3);
@@ -357,15 +521,24 @@ public class LeetCode {
         // Root node
         TreeNode root = new TreeNode(4, node2, node6);
 
-        System.out.println(
-        new LeetCode().serialize(root));
 
-       var l =  new LeetCode().parseStringToList(new LeetCode().serialize(root));
-        System.out.println(l);
+//                            4
+//                          2    6
+//                         1 3  5  7
+
+//        System.out.println(
+//        new LeetCode().serialize(root));
+//
+//       var l =  new LeetCode().parseStringToList(new LeetCode().serialize(root));
+//        System.out.println(l);
+//
+//
+//        var r = new LeetCode().deserializeHelper(l);
+
+//        System.out.println(r);
 
 
-        var r = new LeetCode().deserializeHelper(l);
-
-        System.out.println(r);
+        var ans = convertBSTToDLL(root);
+        
     }
 }
